@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mensagens Anônimas</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .container {
+    margin-top: 50px;
+  }
+  input[type="text"], textarea, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #messages {
+    margin-top: 20px;
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Mensagens Anônimas</h1>
+  <form id="messageForm">
+    <input type="text" id="nameInput" placeholder="Seu nome">
+    <textarea id="messageInput" placeholder="Digite sua mensagem"></textarea>
+    <button type="button" onclick="sendMessage()">Enviar</button>
+  </form>
+  <div id="messages"></div>
+</div>
+
+<script>
+  function sendMessage() {
+    var name = document.getElementById('nameInput').value;
+    var message = document.getElementById('messageInput').value;
+    
+    if (name.trim() === '' || message.trim() === '') {
+      alert('Por favor, preencha seu nome e a mensagem.');
+      return;
+    }
+    
+    var messagesDiv = document.getElementById('messages');
+    var newMessageDiv = document.createElement('div');
+    newMessageDiv.innerHTML = '<strong>' + name + ':</strong> ' + message;
+    messagesDiv.appendChild(newMessageDiv);
+    
+    // Limpar campos de entrada após o envio
+    document.getElementById('nameInput').value = '';
+    document.getElementById('messageInput').value = '';
+  }
+</script>
+</body>
+</html>
